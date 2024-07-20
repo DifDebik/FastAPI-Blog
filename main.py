@@ -1,17 +1,40 @@
 from fastapi import FastAPI
+from typing import Optional
 
 app = FastAPI()
 
 
-@app.get('/')
-def index():
+@app.get('/blog')
+def index(limit=10, published=True, sort: Optional[str] = None):
+    # only get 10 published blogs
+
+    if published:
+        return {
+            'data': f'{limit} published blogs fetched',
+        }
+    else:
+        return {
+            'data': f'{limit} blogs fetched',
+        }
+
+
+@app.get('/blog/unpublished')
+def unpublished():
     return {
-        'data': {'name': 'Dif'},
+        'data': 'all unpublished blogs'
     }
 
 
-@app.get('/about')
-def about():
+@app.get('/blog/{id}')
+def show(id: int):
     return {
-        'data': 'about page',
+        'data': id,
+    }
+
+
+@app.get('/blog/{id}/comments')
+def comments(id, limit=10):
+    # fetch comments of blog with id = id
+    return {
+        'data': {'1', '2'},
     }
