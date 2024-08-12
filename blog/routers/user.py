@@ -5,8 +5,8 @@ from ..hashing import Hash
 
 
 router = APIRouter(
-    prefix='user',
-    tags=['Users']
+    prefix='/user',
+    tags=['Users'],
 )
 get_db = database.get_db
 
