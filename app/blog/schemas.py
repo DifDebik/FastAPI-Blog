@@ -13,16 +13,19 @@ class User(BaseModel):
     password: str
 
 
-class ShowUser(BaseModel):
+class ShowCreator(BaseModel):
     name: str
     email: str
+
+
+class ShowUser(ShowCreator):
     blogs: list[Blog]
 
 
 class ShowBlog(BaseModel):
     title: str
     body: str
-    creator: ShowUser
+    creator: ShowCreator
 
 
 class Login(BaseModel):
